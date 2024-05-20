@@ -7,18 +7,10 @@ import ImageModal from "../imageModal/ImageModal";
 import ImageGallery from "../imageGallery/ImageGallery";
 import SearchBar from "../searchBar/SearchBar";
 import "./App.css";
+import { Image, ApiResponse } from "../../types";
 
 const API_URL = "https://api.unsplash.com/search/photos";
 const IMAGES_PER_PAGE = 20;
-
-interface Image {
-  id: string;
-  urls: {
-    regular: string;
-    small: string;
-  };
-  alt_description: string;
-}
 
 const App: React.FC = () => {
   const [images, setImages] = useState<Image[]>([]);
@@ -42,11 +34,10 @@ const App: React.FC = () => {
       if (searchQuery) {
         setErrorMsg("");
         setLoading(true);
-        const { data } = await axios.get(
-          `${API_URL}?query=${searchQuery}&page=${page}&per_page=${IMAGES_PER_PAGE}&client_id=${
-            import.meta.env.VITE_API_KEY
-          }`
+        const response = await axios.get<ApiResponse>(
+          `${API_URL}?query=${searchQuery}&page=${page}&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
         );
+        const data = response.data;
         setImages((prevImages) => [...prevImages, ...data.results]);
         setTotalPages(data.total_pages);
         setLoading(false);

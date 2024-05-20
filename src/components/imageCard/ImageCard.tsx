@@ -1,6 +1,17 @@
 import './ImageCard.css';
 
-const ImageCard = ({ image, openModal }) => {
+type ImageCardProps = {
+  image: {
+    urls: {
+      regular: string;
+      small: string;
+    };
+    alt_description: string;
+  };
+  openModal: (url: string) => void;
+};
+
+const ImageCard: React.FC<ImageCardProps> = ({ image, openModal }) => {
   const handleClick = () => {
     openModal(image.urls.regular);
   };

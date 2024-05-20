@@ -11,16 +11,25 @@ import "./App.css";
 const API_URL = "https://api.unsplash.com/search/photos";
 const IMAGES_PER_PAGE = 20;
 
-function App() {
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedImageUrl, setSelectedImageUrl] = useState(null);
+interface Image {
+  id: string;
+  urls: {
+    regular: string;
+    small: string;
+  };
+  alt_description: string;
+}
 
-  const openImageModal = (imageUrl) => {
+const App: React.FC = () => {
+  const [images, setImages] = useState<Image[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+
+  const openImageModal = (imageUrl: string) => {
     setSelectedImageUrl(imageUrl);
   };
 
@@ -49,7 +58,7 @@ function App() {
     }
   }, [page, searchQuery]);
 
-  const handleSearch = (query) => {
+  const handleSearch = (query: string) => {
     setPage(1);
     setImages([]);
     setSearchQuery(query);
@@ -86,6 +95,6 @@ function App() {
       )}
     </div>
   );
-}
+};
 
 export default App;

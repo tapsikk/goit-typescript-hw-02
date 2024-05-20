@@ -1,6 +1,11 @@
 import Modal from "react-modal";
 
-const ImageModal = ({ imageUrl, closeModal }) => {
+type ImageModalProps = {
+  imageUrl: string;
+  closeModal: () => void;
+};
+
+const ImageModal: React.FC<ImageModalProps> = ({ imageUrl, closeModal }) => {
   return (
     <Modal
       isOpen={true}

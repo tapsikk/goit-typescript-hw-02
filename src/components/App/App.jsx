@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import ErrorMessage from "./components/errorMessage/ErrorMessage";
-import LoadMoreBtn from "./components/loadMoreBtn/LoadMoreBtn";
+import ErrorMessage from "../errorMessage/ErrorMessage";
+import LoadMoreBtn from "../loadMoreBtn/LoadMoreBtn";
 import { BallTriangle } from "react-loader-spinner";
-import ImageModal from "./components/imageModal/ImageModal";
-import ImageGallery from "./components/imageGallery/ImageGallery";
-import SearchBar from "./components/searchBar/SearchBar";
+import ImageModal from "../imageModal/ImageModal";
+import ImageGallery from "../imageGallery/ImageGallery";
+import SearchBar from "../searchBar/SearchBar";
 import "./App.css";
 
 const API_URL = "https://api.unsplash.com/search/photos";
